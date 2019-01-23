@@ -14,8 +14,30 @@ public class Card {
     private int value;
     
     public Card (String s, int v){
-        suit = s;
-        value = v;
+        boolean goodToGo = false;
+        for(String check : new String[]{"Hearts","Diamonds", "Spades", "Clubs"}){
+            if(s.equals(check)){
+                goodToGo = true;
+                break;
+            }
+        }
+        if(!goodToGo){
+            System.out.println("That card type is not acceptable");
+            System.out.println("Please use 'Hearts' 'Diamonds' 'Spades' or 'Clubs'");
+            throw new IllegalArgumentException();
+        }else{
+        
+            if(v <= 13 && v >= 1){
+                this.value = v;
+                this.suit = s;
+
+            }else{
+                System.out.println("That card number is not acceptable");
+                System.out.println("Please enter a number between 1 and 13");
+                throw new IllegalArgumentException();
+            }
+        }
+
     }
 
     /**
